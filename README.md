@@ -1,4 +1,4 @@
-# 🛡️ TrustFilterAI
+# 🛡️ TrustFilterAI (In Progress)
 
 **TrustFilterAI** is a full-stack AI-powered platform designed to ensure **product authenticity**, detect **fake reviews**, and flag **counterfeit items** using modern deep learning and LLM techniques.
 
