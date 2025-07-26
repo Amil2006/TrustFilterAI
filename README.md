@@ -110,7 +110,7 @@ Review: "Totally useless, broke in one day. DO NOT BUY!!!"
 
 ---
 
-📊 Dashboard Features
+## 📊 Dashboard Features
 🌐 Review classification tags: Verified ✅ | Fake ❌ | Pending ⏳
 
 📉 Pie chart showing % of fake vs real reviews
@@ -123,7 +123,7 @@ Review: "Totally useless, broke in one day. DO NOT BUY!!!"
 
 ---
 
-☁️ Cloudinary Integration
+## ☁️ Cloudinary Integration
 TrustFilterAI uses Cloudinary for product image management:
 
 ✅ Benefits:
@@ -136,12 +136,12 @@ Essential for image-based ML analysis
 
 ---
 
-🤖 LLM Integration
+## 🤖 LLM Integration
 The app integrates Mistral 7B via llama-b5921-bin-win-cuda-12.4-x64 with OpenAI-style API compatibility.
 
 ---
 
-🧪 Counterfeit Detection (Planned)
+## 🧪 Counterfeit Detection (Planned)
 Using ResNet-50 + metadata to classify product images as either:
 
 ✅ Genuine
@@ -152,5 +152,5 @@ Combined with title, description & brand matching for stronger detection.
 
 ---
 
-📌 License
+## 📌 License
 This project is open-source under the MIT License.
