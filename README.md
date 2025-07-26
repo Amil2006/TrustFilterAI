@@ -121,6 +121,8 @@ Review: "Totally useless, broke in one day. DO NOT BUY!!!"
 
 ⏳ Loading spinner while waiting for LLM classification
 
+---
+
 ☁️ Cloudinary Integration
 TrustFilterAI uses Cloudinary for product image management:
 
@@ -132,8 +134,12 @@ Optimized image delivery via CDN
 
 Essential for image-based ML analysis
 
+---
+
 🤖 LLM Integration
 The app integrates Mistral 7B via llama-b5921-bin-win-cuda-12.4-x64 with OpenAI-style API compatibility.
+
+---
 
 🧪 Counterfeit Detection (Planned)
 Using ResNet-50 + metadata to classify product images as either:
@@ -143,6 +149,8 @@ Using ResNet-50 + metadata to classify product images as either:
 ❌ Counterfeit
 
 Combined with title, description & brand matching for stronger detection.
+
+---
 
 📌 License
 This project is open-source under the MIT License.
