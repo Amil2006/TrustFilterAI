@@ -1,0 +1,13 @@
+.review-card {
+  border: 1px solid #ccc;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 500px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+.review-card button {
+  margin-right: 0.5rem;
+  padding: 5px 10px;
+}

@@ -1,0 +1,44 @@
+/* src/components/Navbar.css */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #0056b3;
+}
+
+.nav-btn.active {
+  background-color: #004085; /* Highlight color */
+  font-weight: bold;
+  box-shadow: 0 0 0 2px #cce5ff;
+}
