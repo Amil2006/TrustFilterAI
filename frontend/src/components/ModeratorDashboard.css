@@ -1,0 +1,168 @@
+/* ModeratorDashboard.css */
+.dashboard-container {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+h2 {
+  color: #0d47a1;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+
+.filters input {
+  padding: .75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  flex: 0.4;
+  margin-left: 210px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filters select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  flex: 0.4;
+  /* width: 750px; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.stats-section {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.chart-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+}
+
+.chart-box p {
+  margin-top: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: #f4e5e5;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  border-left: 6px solid #196cd2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.review-text {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.review-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.review-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  transition: opacity 0.2s ease;
+}
+
+.review-actions button:hover {
+  opacity: 0.9;
+}
+
+.approve-btn {
+  background-color: #2e7d32;
+}
+
+.delete-btn {
+  background-color: #c62828;
+}
+
+.status-tag {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+}
+
+.status-real {
+  background-color: #2e7d32;
+}
+
+.status-fake {
+  background-color: #c62828;
+}
+
+.status-pending {
+  background-color: #f9a825;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+  
+  .filters {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .chart-box {
+    padding: 1rem;
+  }
+}

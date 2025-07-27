@@ -1,0 +1,28 @@
+.product-card {
+  width: 300px;
+  min-height: 450px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+
+.product-card img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Avoid clipping */
+  object-position: center;
+  border-radius: 12px;
+  max-height: 200px;
+  margin-bottom: 1rem;
+}
+
