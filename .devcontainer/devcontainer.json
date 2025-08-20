@@ -1,0 +1,37 @@
+{
+  "name": "TrustFilterAI Workspace",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/mongodb:1": {}
+  },
+  "postCreateCommand": "npm install --prefix frontend && npm install --prefix backend",
+  "forwardPorts": [3000, 5000],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mongodb.mongodb-vscode",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "remoteUser": "node",
+  "mounts": [
+    "source=node_modules,target=${containerWorkspaceFolder}/frontend/node_modules,type=volume",
+    "source=node_modules,target=${containerWorkspaceFolder}/backend/node_modules,type=volume"
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Frontend (React)",
+      "onAutoForward": "openPreview"
+    },
+    "5000": {
+      "label": "Backend (Express API)",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
