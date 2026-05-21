@@ -1,156 +1,240 @@
-# 🛡️ TrustFilterAI (In Progress)
+# 🛡️ TrustFilterAI
 
-**TrustFilterAI** is a full-stack AI-powered platform designed to ensure **product authenticity**, detect **fake reviews**, and flag **counterfeit items** using modern deep learning and LLM techniques.
+**TrustFilterAI** is a full-stack AI-powered platform designed to ensure **trust and authenticity in e-commerce systems** by detecting:
 
-This project empowers e-commerce platforms to maintain **trust and safety** at scale through intelligent automation and modular design.
+- Fake product reviews  
+- Subtle spam and manipulation  
+- Counterfeit product indicators (planned)  
 
----
-
-## 📌 Table of Contents
-
-- [🚀 Project Overview](#-project-overview)
-- [🎯 Goals](#-goals)
-- [🧠 AI Features](#-ai-features)
-- [🖥️ Tech Stack](#-tech-stack)
-- [⚙️ Installation](#️-installation)
-- [📊 Dashboard Features](#-dashboard-features)
-- [☁️ Cloudinary Integration](#-cloudinary-integration)
-- [🤖 LLM Integration](#-llm-integration)
-- [🧪 Counterfeit Detection (Planned)](#-counterfeit-detection-planned)
-- [📎 HackOn Pitch Deck](#-hackon-pitch-deck)
-- [📌 License](#-license)
+The system combines **Deep Learning, NLP, and full-stack engineering** into a unified moderation pipeline.
 
 ---
 
 ## 🚀 Project Overview
 
-TrustFilterAI was initially conceptualized during **HackOn with Amazon – Season 5**, under the theme _"AI-Powered Trust & Safety Platform."_ While it didn't progress past the first round, it now serves as a long-term personal project for practical learning and portfolio development.
+TrustFilterAI started as a HackOn prototype and evolved into a **real-world ML system** focused on:
 
-> 📎 [View HackOn Pitch Deck »](https://drive.google.com/file/d/1_PmpqlBncIugI3_VDfuKnpe6W8DS2LV9/view?usp=sharing)
+- Dataset engineering  
+- Model generalization  
+- ML pipeline design  
+- Full-stack integration  
 
----
-
-## 🎯 Goals
-
-- Detect and classify fake reviews using a local LLM (Mistral 7B)
-- Identify counterfeit products using image + metadata with ResNet
-- Provide moderators with an intuitive review classification dashboard
-- Maintain transparency with verified, pending, and flagged reviews
+📎 [HackOn Pitch Deck](https://drive.google.com/file/d/1_PmpqlBncIugI3_VDfuKnpe6W8DS2LV9/view?usp=sharing)
 
 ---
 
-## 🧠 AI Features
+## 🧠 Core Features
 
-### ✅ Completed
+### ✅ V1: CNN-based Review Classification
 
-- [x] Fake review detection with Mistral-7B using llama.cpp API
-- [x] Cloudinary integration for image upload & rendering
-- [x] Rating system via interactive star inputs
-- [x] Review status badge: ✅ Real / ❌ Fake / ⏳ Pending
+- Built a **Convolutional Neural Network (CNN)** model using **TensorFlow/Keras** for text classification  
+- Takes a raw **input review** and processes it through a complete NLP pipeline:
+  - Preprocessing (cleaning, normalization)  
+  - Tokenization and sequence padding  
+  - Embedding layer for semantic representation  
+  - CNN (Conv1D + pooling) for feature extraction  
+- Classifies reviews into:
+  - Genuine  
+  - Fake  
+  - Spam (including subtle and hard-to-detect spam)
 
-### 🛠️ In Progress
+- Designed to handle **real-world noisy data** using balanced and augmented datasets  
+- Evaluated using **precision, recall, and F1-score** to ensure robust performance beyond accuracy  
 
-- [ ] Image-based counterfeit detection (ResNet + metadata)
-- [ ] Anomaly detection in review timelines (Isolation Forest)
+---
+
+
+### ✅ Advanced Dataset Engineering
+
+- Synthetic review generation  
+- Hard/ambiguous sample creation  
+- Subtle spam injection  
+- Real-world dataset integration (~40K reviews subset)
+
+---
+
+### 📊 Model Performance
+
+| Metric | Value |
+|------|------|
+| Test Accuracy | ~91–93% |
+| Precision / Recall | Balanced |
+| Generalization | High |
+
+---
+
+### 🧠 Key Insight
+
+> Increasing dataset difficulty reduced accuracy slightly but significantly improved model robustness and real-world performance.
+
+---
+
+## 🧪 ML Pipeline
+
+### 🧠 V1: CNN Review Classification Pipeline
+
+![CNN Pipeline](assets/cnn_pipeline.png)
 
 ---
 
 ## 🖥️ Tech Stack
 
-| Layer         | Tools & Technologies                             |
-|--------------|--------------------------------------------------|
-| **Frontend**  | React.js, Chart.js / Recharts |
-| **Backend**   | Node.js, Express.js                              |
-| **Database**  | MongoDB, Mongoose                                |
-| **LLM Engine**| Mistral-7B via llama.cpp (OpenAI-compatible)     |
-| **AI Models** | ResNet-50, DistilBERT, Isolation Forest (planned) |
-| **Media CDN** | Cloudinary                                       |
+| Layer | Technologies |
+|------|------------|
+| Frontend | React.js |
+| Backend | Node.js, Express.js |
+| Database | MongoDB |
+| ML Framework | TensorFlow / Keras |
+| NLP | Tokenization + CNN |
+| Media | Cloudinary |
 
 ---
 
-## ⚙️ Installation
+## 📂 Project Structure
 
-1. Clone the repo  
-   ```bash
-git clone https://github.com/yourusername/TrustFilterAI.git
+
+TrustFilterAI/
+├── .devcontainer/
+│   └── devcontainer.json
+├── assets/
+│   └── v1 cnn_pipeline.json
+├── .gitignore
+├── backend/
+│   ├── models/
+│   │   └── Product.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes/
+│   │   ├── aiRoutes.js
+│   │   └── productRoutes.js
+│   └── server.js
+├── frontend/
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public/
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   └── robots.txt
+│   ├── README.md
+│   └── src/
+│       ├── App.css
+│       ├── App.jsx
+│       ├── App.test.js
+│       ├── components/
+│       │   ├── AddProductForm.css
+│       │   ├── AddProductForm.jsx
+│       │   ├── ModeratorDashboard.css
+│       │   ├── ModeratorDashboard.jsx
+│       │   ├── Navbar.css
+│       │   ├── Navbar.jsx
+│       │   ├── ProductCard.css
+│       │   ├── ProductCard.jsx
+│       │   ├── ProductDetail.css
+│       │   ├── ProductDetail.jsx
+│       │   ├── ProductList.css
+│       │   └── ProductList.jsx
+│       ├── index.css
+│       ├── index.js
+│       ├── logo.svg
+│       ├── reportWebVitals.js
+│       └── setupTests.js
+├── LICENSE
+├── ml/
+│   ├── data/
+│   │   ├── eda_dataset.ipynb
+│   │   └── raw/
+│   │       └── generate_dataset.py
+│   └── text/
+│       └── keras_cnn/
+│           ├── model.py
+│           ├── preprocess.py
+│           └── train.py
+├── README.md
+└── TrustFilterAI.code-workspace
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone Repository
+
+```bash
+git clone [https://github.com/yourusername/TrustFilterAI.git](https://github.com/yourusername/TrustFilterAI.git)
 cd TrustFilterAI
 ```
 
-### 2. Start the LLM server (via `text-generation-webui` or `llama-server`)
-```bash
-python server.py --model mistral-7b-instruct-v0.2.Q4_K_M.gguf --api --nowebui --extensions openai --api-port 5001
-```
+### 2. Backend Setup
 
-### 3. Setup Backend
 ```bash
 cd backend
 npm install
-# Create a `.env` with your MongoDB and Cloudinary creds
-node index.js
+node server.js
 ```
 
-### 4. Setup Frontend
+### 3. Frontend Setup
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
----
+### 4. ML Setup
 
-## 🔍 Example Classification
-
-```
-Review: "This is the best keyboard I’ve ever used!"
-→ LLM Response: { classification: "real", confidence: 0.97 }
-
-Review: "Totally useless, broke in one day. DO NOT BUY!!!"
-→ LLM Response: { classification: "fake", confidence: 0.92 }
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install pandas numpy scikit-learn tensorflow
 ```
 
----
+### 5. Train Model
 
-## 📊 Dashboard Features
-🌐 Review classification tags: Verified ✅ | Fake ❌ | Pending ⏳
+```bash
+python ml/text/keras_cnn/train.py
+```
 
-📉 Pie chart showing % of fake vs real reviews
+## 📊 Example Output
 
-🖊️ Edit or delete flagged reviews with confirmation modals
+```json
+{
+  "label": "fake",
+  "confidence": 0.91
+}
+```
 
-🔍 Filter reviews by product, classification, or confidence
+## 📊 Evaluation Metrics
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Class-wise performance analysis
 
-⏳ Loading spinner while waiting for LLM classification
+## 🔥 Key Learning Outcomes
+* Dataset quality > model complexity
+* Handling overfitting vs generalization
+* Importance of ambiguous samples
+* Real-world ML pipeline design
+* Model evaluation beyond accuracy
 
----
+## 🚧 Upcoming Modules
 
-## ☁️ Cloudinary Integration
-TrustFilterAI uses Cloudinary for product image management:
+### 🔵 DistilBERT (Next Step)
+* Transformer-based NLP model
+* Expected performance improvement over CNN
 
-✅ Benefits:
+### 🟡 Counterfeit Detection
+* CNN-based image classification
+* Visual anomaly detection
 
-Secure cloud storage
-
-Optimized image delivery via CDN
-
-Essential for image-based ML analysis
-
----
-
-## 🤖 LLM Integration
-The app integrates Mistral 7B via llama-b5921-bin-win-cuda-12.4-x64 with OpenAI-style API compatibility.
-
----
-
-## 🧪 Counterfeit Detection (Planned)
-Using ResNet-50 + metadata to classify product images as either:
-
-✅ Genuine
-
-❌ Counterfeit
-
-Combined with title, description & brand matching for stronger detection.
-
----
+### 🟣 Trust Score Engine
+* Combines:
+  * Review analysis
+  * Image authenticity
+* Outputs unified trust score
 
 ## 📌 License
-This project is open-source under the MIT License.
+MIT License
