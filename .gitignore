@@ -46,3 +46,14 @@ frontend/node_modules/
 .vscode/
 *.log
 .DS_Store
+
+# ML files
+ml/data/raw/*.csv
+ml/text/keras_cnn/saved/
+
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.venv/
