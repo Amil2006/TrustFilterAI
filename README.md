@@ -92,70 +92,50 @@ TrustFilterAI started as a HackOn prototype and evolved into a **real-world ML s
 
 ## 📂 Project Structure
 
-
+```text
 TrustFilterAI/
-├── .devcontainer/
-│   └── devcontainer.json
-├── assets/
-│   └── v1 cnn_pipeline.json
-├── .gitignore
 ├── backend/
-│   ├── models/
-│   │   └── Product.js
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── routes/
-│   │   ├── aiRoutes.js
-│   │   └── productRoutes.js
-│   └── server.js
+│ ├── models/
+│ │ └── Product.js
+│ ├── routes/
+│ │ ├── aiRoutes.js
+│ │ └── productRoutes.js
+│ └── server.js
+│
 ├── frontend/
-│   ├── .gitignore
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── public/
-│   │   ├── favicon.ico
-│   │   ├── index.html
-│   │   ├── logo192.png
-│   │   ├── logo512.png
-│   │   ├── manifest.json
-│   │   └── robots.txt
-│   ├── README.md
-│   └── src/
-│       ├── App.css
-│       ├── App.jsx
-│       ├── App.test.js
-│       ├── components/
-│       │   ├── AddProductForm.css
-│       │   ├── AddProductForm.jsx
-│       │   ├── ModeratorDashboard.css
-│       │   ├── ModeratorDashboard.jsx
-│       │   ├── Navbar.css
-│       │   ├── Navbar.jsx
-│       │   ├── ProductCard.css
-│       │   ├── ProductCard.jsx
-│       │   ├── ProductDetail.css
-│       │   ├── ProductDetail.jsx
-│       │   ├── ProductList.css
-│       │   └── ProductList.jsx
-│       ├── index.css
-│       ├── index.js
-│       ├── logo.svg
-│       ├── reportWebVitals.js
-│       └── setupTests.js
-├── LICENSE
+│ ├── public/
+│ │ ├── index.html
+│ │ ├── favicon.ico
+│ │ └── assets...
+│ ├── src/
+│ │ ├── components/
+│ │ │ ├── AddProductForm.jsx
+│ │ │ ├── ModeratorDashboard.jsx
+│ │ │ ├── Navbar.jsx
+│ │ │ ├── ProductCard.jsx
+│ │ │ ├── ProductDetail.jsx
+│ │ │ └── ProductList.jsx
+│ │ ├── App.jsx
+│ │ └── index.js
+│
 ├── ml/
-│   ├── data/
-│   │   ├── eda_dataset.ipynb
-│   │   └── raw/
-│   │       └── generate_dataset.py
-│   └── text/
-│       └── keras_cnn/
-│           ├── model.py
-│           ├── preprocess.py
-│           └── train.py
+│ ├── data/
+│ │ ├── eda_dataset.ipynb
+│ │ └── raw/
+│ │ └── generate_dataset.py
+│ └── text/
+│ └── keras_cnn/
+│ ├── model.py
+│ ├── preprocess.py
+│ └── train.py
+│
+├── assets/
+│ └── cnn_pipeline.png
+│
+├── .gitignore
 ├── README.md
-└── TrustFilterAI.code-workspace
-
+└── LICENSE
+```
 ---
 
 ## ⚙️ Setup Instructions
