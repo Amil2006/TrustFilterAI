@@ -85,3 +85,12 @@ __pycache__/
 *.pt
 *.bin
 *.log
+# ML Models
+*.pt
+*.bin
+*.safetensors
+ml/V2/models/
+
+# Large data
+ml/V2/data/raw/
+ml/V2/data/processed/
