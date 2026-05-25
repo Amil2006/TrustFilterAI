@@ -80,3 +80,8 @@ Thumbs.db
 *.tmp
 .vs/
 *.code-workspace
+.venv/
+__pycache__/
+*.pt
+*.bin
+*.log
