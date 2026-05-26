@@ -107,11 +107,32 @@ __pycache__/
 *.h5
 *.pt
 
-# Data (VERY IMPORTANT)
-ml/counterfeit_detection/data/
-
 # Outputs
 ml/counterfeit_detection/outputs/
 
-# Notebooks checkpoints
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+venv/
+
+# Jupyter
 .ipynb_checkpoints/
+
+# Models (VERY IMPORTANT)
+ml/counterfeit_detection/models/*.pth
+
+# Dataset (CRITICAL)
+ml/counterfeit_detection/data/
+
+# Ignore triplet experiment
+ml/counterfeit_detection/notebooks/06_triplet_similarity.ipynb
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
