@@ -94,3 +94,24 @@ ml/V2/models/
 # Large data
 ml/V2/data/raw/
 ml/V2/data/processed/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual env
+.venv/
+
+# ML stuff
+*.pth
+*.h5
+*.pt
+
+# Data (VERY IMPORTANT)
+ml/counterfeit_detection/data/
+
+# Outputs
+ml/counterfeit_detection/outputs/
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
