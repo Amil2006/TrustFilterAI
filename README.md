@@ -4,29 +4,36 @@
 
 - Fake product reviews  
 - Subtle spam and manipulation  
-- Counterfeit product indicators *(planned)*   
+- Counterfeit products using image-based analysis  
 
-The system combines **Transformer-based NLP, Deep Learning, and full-stack engineering** into a unified moderation pipeline.
+The system combines **Transformer-based NLP, Computer Vision, and full-stack engineering** into a unified trust and moderation pipeline.
 
 ---
 
-## Project Overview
+# Project Overview
 
-TrustFilterAI started as a HackOn prototype and evolved into a **real-world ML system** focused on:
+TrustFilterAI started as a HackOn prototype and evolved into a **real-world multi-modal ML system** focused on ensuring **trust and authenticity in e-commerce platforms**.
 
-- Dataset engineering and quality optimization  
-- Model generalization on noisy real-world data  
-- Scalable ML pipeline design  
-- Full-stack AI integration   
+The system addresses two key problems:
+- Detecting **fake and manipulative reviews (NLP)**
+- Identifying **counterfeit products using visual signals (Computer Vision)**
 
-The project has progressed from a **CNN-based baseline (V1)** to a **Transformer-based DistilBERT model (V2)**, with future plans for a **multimodal trust scoring system** combining text and image analysis.
+### Key Focus Areas
+- Dataset engineering and robustness on noisy real-world data  
+- Model generalization across diverse inputs  
+- Explainability through embedding visualization (t-SNE)  
+- Scalable and modular ML pipeline design  
+- Full-stack AI integration  
+
+The project has progressed from a **CNN-based baseline (V1)** to a **Transformer-based DistilBERT model (V2)**, and also includes a **Computer Vision pipeline for counterfeit detection using ResNet embeddings and clustering techniques**.
 
 📎 [HackOn Pitch Deck](https://drive.google.com/file/d/1_PmpqlBncIugI3_VDfuKnpe6W8DS2LV9/view?usp=sharing)
 
-
 ---
 
-## Core Features
+# Core Modules
+
+## 1. Fake Review Detection (NLP)
 
 ### V1: CNN-based Review Classification
 
@@ -43,7 +50,8 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 
 - Designed to handle **real-world noisy data** using balanced and augmented datasets  
 - Evaluated using **precision, recall, and F1-score** to ensure robust performance beyond accuracy  
-#### V1 Model Performance
+
+#### Performance
 
 | Metric | Value |
 |------|------|
@@ -53,41 +61,30 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 
 ---
 
-### V2: DistilBERT-based Review Analysis (Latest)
+### V2: DistilBERT-based Review Analysis
 
-- Implemented a Transformer-based NLP model (**DistilBERT**) for advanced fake review detection.
-- Designed to overcome limitations of the CNN by capturing contextual and semantic relationships in text.
+- Transformer-based model using **DistilBERT**
+- Captures **contextual and semantic relationships**
 
-#### Key Improvements over V1
-- Context-aware understanding using pretrained transformer embeddings.
-- Reduced dependence on superficial features like keywords or rating bias.
-- Improved detection of:
-  - Subtle spam
-  - Exaggerated promotional language
-  - Rating-text inconsistencies
+#### Improvements over V1
+- Better understanding of context  
+- Detects subtle spam and manipulation  
+- Handles rating-text inconsistencies  
 
 #### Model Design
-- **Base model:** `distilbert-base-uncased`
-- Fine-tuned for binary classification (Fake / Genuine).
-- **Input representation:**
-  - Review text (primary signal)
-  - Rating (controlled influence via mixed formatting)
+- Base: `distilbert-base-uncased`  
+- Binary classification (Fake / Genuine)  
 
 #### Training Strategy
-- **Dataset size:** 10,000 samples.
-- **Data composition:**
-  - 75% clean curated data
-  - 25% noisy real-world data
-- Duplicate removal to prevent data leakage.
-- Controlled validation split (clean-only validation).
+- 10,000 samples  
+- 75% clean + 25% noisy data  
+- Duplicate removal to prevent leakage  
 
-#### V2 Model Performance
+#### Performance
 
 | Metric | Value |
 | :--- | :--- |
 | Accuracy | 98% |
-| Precision (Fake) | 1.00 |
-| Recall (Fake) | 0.98 |
 | F1 Score | ~0.99 |
 | Avg Confidence | 0.96 |
 
@@ -111,7 +108,89 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 
 ---
 
-### Advanced Dataset Engineering
+---
+
+## 2. Counterfeit Image Detection (Computer Vision)
+
+This module introduces **visual counterfeit detection** using deep learning and embedding-based analysis. It focuses on learning meaningful image representations and validating their effectiveness through visualization and clustering techniques.
+
+---
+
+### Feature Extraction
+- Pretrained **ResNet50** used as a feature extractor  
+- Converts images into **2048-dimensional embeddings**  
+- Captures high-level visual patterns such as texture, shape, and design  
+
+![Feature Extraction and Detection](assets/feature_extraction_detection.png)
+
+---
+
+## Clustering & Visualization
+
+### Pipeline Overview
+
+![Clustering Pipeline](assets/clustering_visualization.png)
+
+---
+
+### t-SNE Visualization
+
+- Reduces dimensionality:
+  - **2048D → 50D (PCA) → 2D (t-SNE)**  
+- Used to:
+  - Visualize embedding structure  
+  - Inspect separation between **fake and genuine images**  
+
+- Label Mapping:
+  - **0 → Fake**
+  - **1 → Genuine**
+
+* Result: **Clear cluster separation between fake and genuine images**
+
+![t-SNE Visualization](ml/counterfeit_detection/outputs/plots/tsne_fake_vs_genuine.png)
+
+---
+
+### K-Means Clustering
+
+- Applied **unsupervised clustering** on embeddings  
+- Evaluates whether:
+  - Fake and genuine images form **natural clusters**  
+
+* Result: **Clusters align well with true labels, confirming strong feature separability**
+
+![K-Means Clustering](ml/counterfeit_detection/outputs/plots/kmeans_clusters.png)
+
+---
+
+## Triplet Similarity Learning
+
+- Implemented **triplet-based similarity learning** on watch image embeddings  
+
+- Input structure:
+  - **Anchor image:** real watch  
+  - **Positive image:** same brand (visually similar)  
+  - **Negative image:** different brand (visually different)  
+
+- Learning objective:
+  - Minimize distance between **anchor and positive**  
+  - Maximize distance between **anchor and negative**  
+
+- Uses:
+  - **Cosine similarity** for embedding comparison  
+
+- Enables:
+  - Brand-level clustering of watch images  
+  - Visual similarity learning across different designs  
+  - Structured embedding space for better separation  
+
+* Produces meaningful embedding space where similar watch brands cluster together and dissimilar ones are separated.
+
+![Triplet Similarity Flow](assets/triplet_similarity.png)
+
+---
+
+## Advanced Dataset Engineering
 
 - Synthetic review generation  
 - Hard/ambiguous sample creation  
@@ -121,20 +200,19 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 ---
 
 
-### Key Insight
 
-> Increasing dataset difficulty reduced accuracy slightly but significantly improved model robustness and real-world performance.
-
----
-
-## ML Pipeline
+# ML Pipeline
 
 ### V1: CNN Review Classification Pipeline
-
 ![CNN Pipeline](assets/cnn_pipeline.png)
 
 ### V2: DistilBERT Review Classification Pipeline
 ![DistilBERT Pipeline](assets/DistilBERT_Pipeline_V2.png)
+
+--- 
+
+### Counterfeit Detection Pipeline (Computer Vision)
+![Counterfeit Pipeline](assets/counterfeit_pipeline.png)
 
 ---
 
@@ -146,48 +224,54 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 | Backend | Node.js, Express.js |
 | Database | MongoDB |
 | ML Framework | PyTorch, TensorFlow/Keras |
-| NLP | DistilBERT (Transformers), CNN (V1) |
-| Media | Cloudinary |
-<!-- | Computer Vision (Planned) | ResNet50 | -->
+| NLP | DistilBERT, CNN (V1) |
+| Computer Vision | ResNet50 |
+| Data & ML Tools | NumPy, Pandas, Scikit-learn |
+| Visualization | Matplotlib, t-SNE |
+| Techniques | Triplet Loss, Clustering, PCA |
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```text
 TrustFilterAI/
+├── assets/
+│   ├── cnn_pipeline.png
+│   └── DistilBERT_Pipeline_V2.png
 ├── backend/
 ├── frontend/
-│   ├── public/
-│   └── src/
-├── data/
-│   ├── processed/
-│   └── raw/
-├── text/
-│   ├── api/
-│   ├── distilbert/
-│   ├── ensemble/
-│   └── keras_cnn/
-│       └── saved/
-├── V2/
-│   ├── data/
-│   │   ├── processed/
-│   │   └── raw/
-│   ├── models/
-│   │   └── distilbert_v2/
-│   ├── notebooks/
-│   ├── outputs/
-│   │   ├── metrics/
-│   │   └── plots/
-│   └── src/
-├── assets/
-├── .gitignore
-├── README.md
-└── LICENSE
+├── ml/
+│   ├── counterfeit_detection/
+│   │   ├── notebooks/
+│   │   │   ├── 01_dataset_loading.ipynb
+│   │   │   ├── 02_fake_data_generation.ipynb
+│   │   │   ├── 03_preprocessing.ipynb
+│   │   │   ├── 04_training_resnet50.ipynb
+│   │   │   ├── 05_evaluation_demo.ipynb
+│   │   │   ├── 06_triplet_similarity.ipynb
+│   │   │   ├── 07_clustering_visualization.ipynb
+│   │   │   └── 08_kmeans_clustering.ipynb
+│   │   ├── outputs/
+│   │   │   └── plots/
+│   │   └── requirements.txt
+│   ├── text/
+│   │   └── keras_cnn/
+│   └── V2/
+│       ├── data/
+│       │   ├── processed/
+│       │   └── raw/
+│       ├── notebooks/
+│       │   ├── 01_data_preprocessing.ipynb
+│       │   ├── 02_model_training_distilbert.ipynb
+│       │   └── 03_model_evaluation_and_demo.ipynb
+│       └── src/
+├── LICENSE
+└── README.md
 ```
 ---
 
-## ⚙️ Setup Instructions
+# ⚙️ Setup Instructions
 
 ### 1. Clone Repository
 
@@ -217,18 +301,26 @@ npm start
 ```bash
 python -m venv .venv
 .venv\Scripts\activate
-pip install pandas numpy scikit-learn tensorflow torch transformers
+pip install -r ml/counterfeit_detection/requirements.txt
 ```
 
 ### 5. Train Models
 
-**🔹 V1 (CNN Model)**
+**NLP Model Execution**
+
+**V1 (CNN Model)**
 ```bash
 python ml/text/keras_cnn/train.py
 ```
-**🔹 V2(DistilBERT Model) Run the training notebook**
+**V2(DistilBERT Model) Run the training notebook**
 ```bash
 jupyter notebook ml/V2/notebooks/02_model_training.ipynb
+```
+**Counterfeit Detection (Computer Vision)**
+```bash
+jupyter notebook ml/counterfeit_detection/notebooks/06_triplet_similarity.ipynb
+jupyter notebook ml/counterfeit_detection/notebooks/07_clustering_visualization.ipynb
+jupyter notebook ml/counterfeit_detection/notebooks/08_kmeans_clustering.ipynb
 ```
 
 ### 6.Evaluation & Demo
@@ -245,38 +337,56 @@ jupyter notebook ml/V2/notebooks/03_model_evaluation_and_demo.ipynb
 }
 ```
 
-## Evaluation Metrics
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Class-wise performance analysis
+# Evaluation Metrics
 
-## Key Learning Outcomes
+### NLP (Review Detection)
+- Accuracy  
+- Precision / Recall  
+- F1 Score  
+- Confusion Matrix  
+- Class-wise performance analysis  
 
-* Data quality and distribution significantly impact model performance
-* Importance of preventing data leakage in ML pipelines
-* Transition from CNN to Transformer-based NLP (DistilBERT)
-* Handling real-world noisy data vs curated datasets
-* Designing robust and scalable ML pipelines
-* Model evaluation beyond accuracy (precision, recall, F1, confidence)
-* Balancing model performance with interpretability
+### Computer Vision (Counterfeit Detection)
+- t-SNE cluster separation (visual evaluation)  
+- K-Means clustering accuracy  
+- Embedding separability analysis  
+- Misclassification / overlap analysis  
 
-## Upcoming Modules
+---
 
-### Counterfeit Detection (ResNet50)
-* Image feature extraction using pretrained ResNet50
-* Visual embedding generation
-* Similarity-based counterfeit detection
-* Basic image retrieval system using cosine similarity
+# Key Learning Outcomes
 
-### Trust Score Engine
+- Data quality and distribution significantly impact model performance  
+- Importance of preventing data leakage in ML pipelines  
+- Transition from CNN → Transformer-based NLP (DistilBERT)  
+- Feature extraction using pretrained CNNs (ResNet50)  
+- Understanding embedding spaces through t-SNE visualization  
+- Validating model robustness using unsupervised clustering (K-Means)  
+- Handling real-world noisy and ambiguous data  
+- Designing modular, scalable ML pipelines  
+- Evaluating models beyond accuracy (F1, clustering alignment, confidence)  
+- Balancing performance with interpretability  
+
+---
+
+# Upcoming Modules
+
+### Unified Trust Scoring Engine
 * Combines:
   * Review analysis (DistilBERT)
   * Image similarity (ResNet50)
   * Rule-based signals (pattern detection)
-* Outputs unified trust score (0–100)
-* Designed for real-time moderation systems
+* Generate a simple **trust score (0–100)** per product
+* Designed for real-time moderation systems  
+
+---
+### Full-Stack Integration
+
+- Expose ML models as APIs and integrate with Node.js backend  
+- Enable real-time review and image analysis  
+- Build dashboard for fake vs genuine insights and product-level monitoring  
+
+---
 
 ## 📌 License
 MIT License
