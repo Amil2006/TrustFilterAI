@@ -29,6 +29,7 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 
 📎 [HackOn Pitch Deck](https://drive.google.com/file/d/1_PmpqlBncIugI3_VDfuKnpe6W8DS2LV9/view?usp=sharing)
 
+
 ---
 
 # Core Modules
@@ -50,6 +51,13 @@ The project has progressed from a **CNN-based baseline (V1)** to a **Transformer
 
 - Designed to handle **real-world noisy data** using balanced and augmented datasets  
 - Evaluated using **precision, recall, and F1-score** to ensure robust performance beyond accuracy  
+#### V1 Model Performance
+
+| Metric | Value |
+|------|------|
+| Test Accuracy | ~91–93% |
+| Precision / Recall | Balanced |
+| Generalization | High |
 
 #### Performance
 
