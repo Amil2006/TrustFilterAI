@@ -1,14 +1,11 @@
-# =========================
 # Node.js (Frontend + Backend)
-# =========================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# =========================
 # Environment Variables
-# =========================
+
 .env
 .env.local
 .env.development.local
@@ -17,16 +14,13 @@ yarn-error.log*
 backend/.env
 frontend/.env
 
-# =========================
 # Build & Coverage
-# =========================
+
 build/
 dist/
 coverage/
 
-# =========================
 # Python
-# =========================
 __pycache__/
 *.pyc
 *.pyo
@@ -36,9 +30,7 @@ __pycache__/
 env/
 venv/
 
-# =========================
-# ML / Data Science
-# =========================
+# ML
 
 # Raw datasets
 ml/data/raw/
@@ -59,22 +51,16 @@ ml/**/saved/
 # Jupyter
 .ipynb_checkpoints/
 
-# =========================
 # IDE / System Files
-# =========================
 .vscode/
 .vs/
 .DS_Store
 Thumbs.db
 
-# =========================
 # Logs
-# =========================
 *.log
 
-# =========================
 # Misc
-# =========================
 *.exe
 *.out
 *.tmp
@@ -127,8 +113,6 @@ ml/counterfeit_detection/models/*.pth
 # Dataset (CRITICAL)
 ml/counterfeit_detection/data/
 
-# Ignore triplet experiment
-ml/counterfeit_detection/notebooks/06_triplet_similarity.ipynb
 
 # VS Code
 .vscode/
@@ -136,3 +120,15 @@ ml/counterfeit_detection/notebooks/06_triplet_similarity.ipynb
 # OS
 .DS_Store
 Thumbs.db
+
+# Ignore everything in outputs
+ml/counterfeit_detection/outputs/*
+!ml/counterfeit_detection/outputs/plots/
+!ml/counterfeit_detection/outputs/plots/*
+ml/counterfeit_detection/outputs/logs/
+ml/counterfeit_detection/outputs/*.pt
+ml/counterfeit_detection/outputs/*.npy
+
+# ignore everything in src
+ml/counterfeit_detection/src/
+ml/counterfeit_detection/scripts/
